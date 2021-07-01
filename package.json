@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DniGaytan/cuatro-patitas-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DniGaytan/cuatro-patitas-backend/issues"
+  },
+  "homepage": "https://github.com/DniGaytan/cuatro-patitas-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^27.0.6",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.13.0"
+  }
+}
