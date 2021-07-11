@@ -32,6 +32,4 @@ const userSchema = new mongoose.Schema(
     }
 );
 
-const organization = mongoose.model('Organization', organizationSchema);
-
 module.exports = mongoose.model('User', userSchema);

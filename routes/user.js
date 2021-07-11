@@ -1,4 +1,4 @@
-const userModel = require('../models/users');
+const userModel = require('../models/user');
 const express = require('express');
 const router = express.Router();
 const jsonParser = require('body-parser').json();
@@ -7,8 +7,8 @@ const jsonParser = require('body-parser').json();
 router.post('/register', jsonParser, (req, res) => {
     if (_.includes(req.body, undefined) || _.includes(req.body, null)) {
         return res.json({
-            message = 'Field should not be left blank',
-            error = true,
+            message: 'Field should not be left blank',
+            error: true,
         });
     }
 
@@ -16,14 +16,14 @@ router.post('/register', jsonParser, (req, res) => {
 
     userModel.create({ firstname, lastname, email, password, organization }).then(registeredUser => {
         return res.json({
-            error = false,
+            error: false,
             registeredUser,
         });
     }).catch(e => {
         return res.status(500).json(
             {
-                message = `Error in user registration: ${e}`,
-                error = true,
+                message: `Error in user registration: ${e}`,
+                error: true,
             });
     });
 });
@@ -31,14 +31,14 @@ router.post('/register', jsonParser, (req, res) => {
 router.get('/get/all', jsonParser, (req, res) => {
     userModel.find({}).then(users => {
         return res.json({
-            error = false,
+            error: false,
             users,
         })
 
     }).catch(e => {
         return res.status(500).json({
-            message = `Error in getting users: ${e}`,
-            error = true,
+            message: `Error in getting users: ${e}`,
+            error: true,
         });
     });
 });
@@ -47,18 +47,18 @@ router.get('/get/:_id', jsonParser, (req, res) => {
     userModel.find({ _id }).then(user => {
         if (user == null) {
             return res.status(404).json({
-                message = 'User not found',
-                error = true,
+                message: 'User not found',
+                error: true,
             });
         }
         return res.json({
-            error = false,
+            error: false,
             user,
         });
     }).catch(e => {
         return res.status(500).json({
-            message = `Error in getting user: ${e}`,
-            error = true,
+            message: `Error in getting user: ${e}`,
+            error: true,
         });
     });
 });
