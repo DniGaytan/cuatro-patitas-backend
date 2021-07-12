@@ -10,6 +10,16 @@ start up the server by running:
 
 ## Test environment
 
+Jest is being used for testing all features supported.
+
+to test all test suites, just hit:
+
+`npm test`
+
+to test an specific test suite, run the following command:
+
+`npm test -t "<Test Suite> <Test>"`
+
 
 ## Useful information
 ### Database initial diagram
