@@ -3,19 +3,18 @@ const express = require('express');
 const router = express.Router();
 const jsonParser = require('body-parser').json();
 
-
 router.post('/register', jsonParser, (req, res) => {
     if (_.includes(req.body, undefined) || _.includes(req.body, null)) {
-        return res.json({
+        return res.status(406).json({
             message: 'Field should not be left blank',
             error: true,
         });
     }
 
-    const { firstname, lastname, email, password, organization } = req.body;
+    const { firstname, lastname, email, password, organization} = req.body;
 
-    userModel.create({ firstname, lastname, email, password, organization }).then(registeredUser => {
-        return res.json({
+    userModel.create({ firstname, lastname, email, password, organization}).then(registeredUser => {
+        return res.status(201).json({
             error: false,
             registeredUser,
         });
