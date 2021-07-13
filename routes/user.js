@@ -68,16 +68,26 @@ router.post('/login', jsonParser, (req, res) => {
     //retrieves user by email
     userModel.find({email}).then( user => {
         //validates password
-        if(!bcrypt.compareSync(password, user.password)){
-            //generation a session
-            res.session.hash = jwt.sign({
-                data: user.id,
-            }, JWTTOKEN, { expiresIn: JWTEXPIRATION }); 
+        if(user == null || user == undefined){
+            return res.status(406).json({
+                message: 'User not found',
+                error: true,
+            })
+        } else if(!bcrypt.compareSync(password, user.password)){ 
             return res.status(406).json({
                 message: 'Wrong password',
                 error: true,
             });
         }
+
+        //generates a new session
+        res.session.hash = jwt.sign({
+            data: user.id,
+        }, JWTTOKEN, { expiresIn: JWTEXPIRATION });
+
+        return res.status(200).json({
+            error: false,
+        })
     }).catch( e => {
         return res.status(500).json(
             {
