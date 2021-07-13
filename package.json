@@ -6,7 +6,7 @@
   "testEnvironment": "node",
   "scripts": {
     "test": "jest",
-    "start": "node index.js",
+    "start": "node index.js"
   }, 
   "repository": {
     "type": "git",
