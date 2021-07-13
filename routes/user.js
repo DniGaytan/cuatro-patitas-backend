@@ -132,4 +132,27 @@ router.get('/get/:_id', jsonParser, (req, res) => {
     });
 });
 
+router.put('/set/:_id/organization', jsonParser, (req, res) => {
+    if (_.includes(req.body, undefined) || _.includes(req.body, null)) {
+        return res.status(406).json({
+            message: 'Field should not be left blank',
+            error: true,
+        });
+    }
+    //pass the organization id
+    const { organization } = req.body;
+
+    userModel.updateOne({_id : req.params._id}, {organization}).then( user => {
+        return res.status(200).json({
+            user,
+            error: false,
+        });
+    }).catch( e => {
+        return res.status(500).json({
+            message: `Error in setting organization: ${e}`,
+            error: true,
+        });
+    });
+});
+
 module.exports = router;
